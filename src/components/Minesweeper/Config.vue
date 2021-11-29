@@ -31,44 +31,48 @@ const resetGame = () => {
     <div class="px-5 py-2 border border-gray-700 rounded-lg flex flex-row gap-2 items-center">
       <span>Grid </span>
       <div class="h-full w-px bg-black dark:bg-white opacity-10" />
-      <PrimaryInput
+      <GuardedInput
         v-model.number="rows"
+        :danger="() => rows.toString() === ''"
         type="number"
         class="w-22"
       >
         <template #label>
           Rows
         </template>
-      </PrimaryInput>
+      </GuardedInput>
       <span>x</span>
-      <PrimaryInput
+      <GuardedInput
         v-model.number="cols"
+        :danger="() => cols.toString() === ''"
         type="number"
         class="w-22"
       >
         <template #label>
           Cols
         </template>
-      </PrimaryInput>
+      </GuardedInput>
     </div>
     <div class="px-5 py-2 border border-gray-700 rounded-lg flex flex-row gap-2 items-center">
       <span>Bombs </span>
       <div class="h-full w-px bg-black dark:bg-white opacity-10" />
-      <PrimaryInput
+      <GuardedInput
         v-model.number="bombs"
+        :danger="() => bombs.toString() === ''"
         type="number"
         class="w-22"
       >
         <template #label>
           Count
         </template>
-      </PrimaryInput>
+      </GuardedInput>
     </div>
     <div class="relative">
       <Transition name="component-fade">
         <component
           :is="resetButtonType"
           class="absolute px-5 py-2 rounded-lg"
+          :disabled="rows.toString() === '' || cols.toString() === '' || bombs.toString() === '' || rows <= 0 || cols <= 0 || bombs <= 0"
           @click="resetGame"
         >
           Reset
@@ -84,7 +88,7 @@ const resetGame = () => {
 <style scoped>
 .component-fade-enter-active,
 .component-fade-leave-active {
-  transition: opacity 0.3s ease;
+  transition: opacity 0.27s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .component-fade-enter-from,

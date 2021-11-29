@@ -27,7 +27,7 @@ const padding = computed(() => {
   <component
     :is="componentType"
     :href="props.href"
-    class="transition select-none rounded-md text-xs font-semibold tracking-widest border shadow"
+    class="transition select-none rounded-md text-xs font-semibold tracking-widest border shadow disabled:opacity-25"
     :class="`${padding}`"
   >
     <slot />

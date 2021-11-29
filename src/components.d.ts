@@ -24,6 +24,7 @@ declare module 'vue' {
     DangerInput: typeof import('./components/ui/DangerInput.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
     Game: typeof import('./components/Minesweeper/Game.vue')['default']
+    GuardedInput: typeof import('./components/smartui/GuardedInput.vue')['default']
     IconFile: typeof import('~icons/ic/on-file')['default']
     Input: typeof import('./components/ui/Input.vue')['default']
     MinesweeperGame: typeof import('~icons/mi/nesweeper-game')['default']
