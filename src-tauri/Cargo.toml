@@ -1,8 +1,8 @@
 [package]
 name = "app"
-version = "0.1.0"
-description = "A Tauri App"
-authors = ["you"]
+version = "0.0.1"
+description = "A minesweeper puzzle that is solvable via prover9"
+authors = ["Teodor Virghileanu - @GaussianWonder"]
 license = ""
 repository = ""
 default-run = "app"

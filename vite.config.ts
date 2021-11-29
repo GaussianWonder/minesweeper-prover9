@@ -103,8 +103,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'robots.txt'],
       manifest: {
-        name: 'TauriApp',
-        short_name: 'TauriApp',
+        name: 'MinesweeperProver9',
+        short_name: 'Minesweeper',
         theme_color: '#ffffff',
         icons: [
           {
