@@ -1069,7 +1069,21 @@
   dependencies:
     "@iconify/types" "^1.0.10"
 
-"@iconify/types@^1.0.10", "@iconify/types@^1.0.12":
+"@iconify-json/ic@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@iconify-json/ic/-/ic-1.0.5.tgz#6c17d8f24d8d69f98cc4619b0d345a0a34cccaff"
+  integrity sha512-fCu1jBC8YAopX9JApuM+L0VdwPThpTFT0asBGG1HN7lfm4maHbwD/Cxp3mUIV/pCuTdkNnGgoL/xCe0PmqEb7g==
+  dependencies:
+    "@iconify/types" "^1.0.10"
+
+"@iconify-json/mi@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@iconify-json/mi/-/mi-1.0.1.tgz#f09958312b331a7b56a87973fdc44cd67f1e421c"
+  integrity sha512-BU7l8weoq9kdap45L0benzIXcSxCPh9qcY/tZYk+lOJPvvh+lz2hMhczmy1CqLlRRFHFRyt4sNk1FjUiUH1OjA==
+  dependencies:
+    "@iconify/types" "^1.0.7"
+
+"@iconify/types@^1.0.10", "@iconify/types@^1.0.12", "@iconify/types@^1.0.7":
   version "1.0.12"
   resolved "https://registry.yarnpkg.com/@iconify/types/-/types-1.0.12.tgz#839f1f784b7030b94482d51996570f4dbd7d6796"
   integrity sha512-6er6wSGF3hgc1JEZqiGpg21CTCjHBYOUwqLmb2Idzkjiw6ogalGP0ZMLVutCzah+0WB4yP+Zd2oVPN8jvJ+Ftg==

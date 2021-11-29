@@ -4,6 +4,13 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AltButton: typeof import('./components/ui/AltButton.vue')['default']
+    AltInput: typeof import('./components/ui/AltInput.vue')['default']
+    BaseButton: typeof import('./components/ui/BaseButton.vue')['default']
+    BaseInput: typeof import('./components/ui/BaseInput.vue')['default']
+    Board: typeof import('./components/Minesweeper/Board.vue')['default']
+    Button: typeof import('./components/ui/Button.vue')['default']
+    CarbonCopyFile: typeof import('~icons/carbon/copy-file')['default']
     CarbonDicomOverlay: typeof import('~icons/carbon/dicom-overlay')['default']
     CarbonLanguage: typeof import('~icons/carbon/language')['default']
     CarbonLogoGithub: typeof import('~icons/carbon/logo-github')['default']
@@ -12,8 +19,22 @@ declare module 'vue' {
     CarbonSun: typeof import('~icons/carbon/sun')['default']
     CarbonTemplate: typeof import('~icons/carbon/template')['default']
     CarbonWarning: typeof import('~icons/carbon/warning')['default']
+    Config: typeof import('./components/Minesweeper/Config.vue')['default']
+    DangerButton: typeof import('./components/ui/DangerButton.vue')['default']
+    DangerInput: typeof import('./components/ui/DangerInput.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
+    Game: typeof import('./components/Minesweeper/Game.vue')['default']
+    IconFile: typeof import('~icons/ic/on-file')['default']
+    Input: typeof import('./components/ui/Input.vue')['default']
+    MinesweeperGame: typeof import('~icons/mi/nesweeper-game')['default']
+    PrimaryButton: typeof import('./components/ui/PrimaryButton.vue')['default']
+    PrimaryInput: typeof import('./components/ui/PrimaryInput.vue')['default']
     README: typeof import('./components/README.md')['default']
+    SecondaryButton: typeof import('./components/ui/SecondaryButton.vue')['default']
+    SuccessButton: typeof import('./components/ui/SuccessButton.vue')['default']
+    SuccessInput: typeof import('./components/ui/SuccessInput.vue')['default']
+    WarnButton: typeof import('./components/ui/WarnButton.vue')['default']
+    WarnInput: typeof import('./components/ui/WarnInput.vue')['default']
   }
 }
 

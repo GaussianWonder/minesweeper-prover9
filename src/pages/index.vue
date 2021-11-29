@@ -4,7 +4,7 @@
 
 <template>
   <div class="py-5">
-    Minesweeper here
+    <Game />
   </div>
 </template>
 
