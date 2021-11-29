@@ -1,11 +1,39 @@
-# Vue 3 + Typescript + Vite
+# Minesweeper - Prover9
 
-This template should help get you started developing with Vue 3 and Typescript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This is a simple configurable minesweeper game that you can play.
 
-## Recommended IDE Setup
+The objective of this project is to solve the puzzle using **Prover9**.
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+## Dev
 
-## Type Support For `.vue` Imports in TS
+```bash
+yarn install
+yarn tauri dev
+```
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's `.vue` type support plugin by running `Volar: Switch TS Plugin on/off` from VSCode command palette.
+If you encounter problems, please visit [Tauri Studio's getting started page](https://tauri.studio/en/docs/getting-started/intro).
+
+## Dependencies
+
+Every dependency required by `Tauri`. For a comprehensive list please see [this page](https://tauri.studio/en/docs/getting-started/intro).
+
+Prover9 and Mace4 available anywhere on the system regardless of the context. Visit [this git repo](https://github.com/ai4reason/Prover9) for more details.
+
+## Notes
+
+Because Prover9 can only be built on linux, this is supposed to function correctly only on a linux environment.
+
+I currently run it inside **WSL2**, on a **Windows11** machine, with *gpu passthrough* and **WslG** support, with a custom distro installed
+
+**Relevant info:**
+
+```text
+OS: Manjaro 21.2.0 Qonos(on the Windows Subsystem for Linux)
+Kernel: x86_64 Linux 5.10.60.1-microsoft-standard-WSL2
+Packages: 935
+Resolution: 1920x1080
+WM: Weston WM
+GTK Theme: Breeze [GTK2/3]
+CPU: AMD Ryzen 7 4800H with Radeon Graphics @ 16x 2.894GHz
+GPU: NVIDIA GeForce GTX 1650 Ti
+```
