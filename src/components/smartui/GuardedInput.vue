@@ -1,16 +1,6 @@
-<script lang="ts">
-import AltInputVue from '../ui/AltInput.vue'
-import DangerInputVue from '../ui/DangerInput.vue'
-import PrimaryInputVue from '../ui/PrimaryInput.vue'
-import SuccessInputVue from '../ui/SuccessInput.vue'
-import WarnInputVue from '../ui/WarnInput.vue'
-
-export default {
-  inheritAttrs: false,
-}
-</script>
-
 <script setup lang="ts">
+import { styles } from './button-styles'
+
 interface Props {
   danger?: () => boolean
   warn?: () => boolean
@@ -27,47 +17,30 @@ const props = withDefaults(defineProps<Props>(), {
   alt: () => false,
 })
 
-const inputType = computed(() => {
+const inputStyle = computed(() => {
   const [danger, warn, success, primary, alt] = [props.danger(), props.warn(), props.success(), props.primary(), props.alt()]
   if (danger) // priority line
-    return DangerInputVue
+    return styles.danger
   else if (warn)
-    return WarnInputVue
+    return styles.warn
   else if (success)
-    return SuccessInputVue
+    return styles.success
   else if (primary)
-    return PrimaryInputVue
+    return styles.primary
   else if (alt)
-    return AltInputVue
-  return PrimaryInputVue // default
+    return styles.alt
+  return styles.primary // default
 })
 </script>
 
 <template>
-  <Transition name="component-fade" mode="out-in">
-    <component
-      :is="inputType"
-      v-bind="$attrs"
+  <BaseInput :class="inputStyle">
+    <!-- Take all scoped slots, and pass them to the BaseInput -->
+    <template
+      v-for="(_, slot) in $slots"
+      #[slot]="scope"
     >
-      <!-- Take all scoped slots, and pass them to the BaseInput -->
-      <template
-        v-for="(_, slot) in $slots"
-        #[slot]="scope"
-      >
-        <slot :name="slot" v-bind="scope || {}" />
-      </template>
-    </component>
-  </Transition>
+      <slot :name="slot" v-bind="scope || {}" />
+    </template>
+  </BaseInput>
 </template>
-
-<style scoped>
-.component-fade-enter-active,
-.component-fade-leave-active {
-  transition: opacity 0.17s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.component-fade-enter-from,
-.component-fade-leave-to {
-  opacity: 0;
-}
-</style>

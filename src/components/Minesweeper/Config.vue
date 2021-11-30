@@ -33,7 +33,7 @@ const resetGame = () => {
       <div class="h-full w-px bg-black dark:bg-white opacity-10" />
       <GuardedInput
         v-model.number="rows"
-        :danger="() => rows.toString() === ''"
+        :danger="() => rows.toString() === '' || rows <= 0"
         type="number"
         class="w-22"
       >
@@ -44,7 +44,7 @@ const resetGame = () => {
       <span>x</span>
       <GuardedInput
         v-model.number="cols"
-        :danger="() => cols.toString() === ''"
+        :danger="() => cols.toString() === '' || cols <= 0"
         type="number"
         class="w-22"
       >
@@ -58,7 +58,7 @@ const resetGame = () => {
       <div class="h-full w-px bg-black dark:bg-white opacity-10" />
       <GuardedInput
         v-model.number="bombs"
-        :danger="() => bombs.toString() === ''"
+        :danger="() => bombs.toString() === '' || bombs <= 0"
         type="number"
         class="w-22"
       >
@@ -79,9 +79,6 @@ const resetGame = () => {
         </component>
       </Transition>
     </div>
-    <!-- <AltButton class="px-5 py-2 rounded-lg">
-      Reset
-    </AltButton> -->
   </div>
 </template>
 
