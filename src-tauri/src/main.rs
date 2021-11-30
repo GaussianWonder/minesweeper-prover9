@@ -5,21 +5,6 @@
 
 use serde::{Serialize, Deserialize};
 
-// export interface MinesweeperCell {
-//   isBomb: boolean
-//   isRevealed: boolean // isRevealed, isFlagged and isUnknown cannot be true at the same time
-//   isFlagged: boolean
-//   isUnknown: boolean
-//   adjacentBombs: number // shown when isRevealed and not a bomb
-//   isHint: boolean // no purpose yet, should be active when it is a hint and not revealed
-// }
-
-// export interface MinesweeperBoard {
-//   rows: number
-//   cols: number
-//   cells: MinesweeperCell[][]
-// }
-
 #[derive(Serialize, Deserialize, Debug)]
 struct MinesweeperCell {
   isBomb: bool,
