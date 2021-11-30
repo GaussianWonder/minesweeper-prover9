@@ -1,3 +1,4 @@
+// TODO duplicated styles with those found in AltButton, DangerButton, ...
 export const styles = {
   danger: 'text-red-700 focus:(outline-none ring ring-red-100) bg-white border-red-200 hover:bg-red-50 active:bg-red-100 dark:(text-red-200 focus:ring-red-800 bg-red-700 border-red-600 hover:bg-red-800 active-bg-red-900)',
   warn: 'text-yellow-700 focus:(outline-none ring ring-yellow-100) bg-white border-yellow-200 hover:bg-yellow-50 active:bg-yellow-100 dark:(text-yellow-200 focus:ring-yellow-800 bg-yellow-700 border-yellow-600 hover:bg-yellow-800 active-bg-yellow-900)',

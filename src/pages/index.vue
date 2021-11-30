@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useGameStore } from '~/stores/game'
+const gameState = useGameStore()
 
 </script>
 

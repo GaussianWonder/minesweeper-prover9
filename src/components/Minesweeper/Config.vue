@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import AltButtonVue from '../ui/AltButton.vue'
-import WarnButtonVue from '../ui/WarnButton.vue'
+import AltButtonVue from '~/components/ui/AltButton.vue'
+import WarnButtonVue from '~/components/ui/WarnButton.vue'
 
 import { useGameStore } from '~/stores/game'
 const gameState = useGameStore()
@@ -18,6 +18,22 @@ const resetButtonType = computed(() => {
   return isConfigDirty.value ? WarnButtonVue : AltButtonVue
 })
 
+const validRows = computed(() => {
+  return rows.value.toString() !== '' && rows.value > 0 && rows.value <= 12
+})
+
+const validCols = computed(() => {
+  return cols.value.toString() !== '' && cols.value > 0 && cols.value <= 20
+})
+
+const validBombs = computed(() => {
+  const totalFields = rows.value * cols.value
+  if (totalFields <= 0) return false
+
+  const bombRatio = bombs.value / totalFields
+  return bombs.value.toString() !== '' && bombs.value > 0 && bombRatio < 0.5
+})
+
 const resetGame = () => {
   gameState.setRowCount(rows.value)
   gameState.setColCount(cols.value)
@@ -33,7 +49,7 @@ const resetGame = () => {
       <div class="h-full w-px bg-black dark:bg-white opacity-10" />
       <GuardedInput
         v-model.number="rows"
-        :danger="() => rows.toString() === '' || rows <= 0"
+        :danger="!validRows"
         type="number"
         class="w-22"
       >
@@ -44,7 +60,7 @@ const resetGame = () => {
       <span>x</span>
       <GuardedInput
         v-model.number="cols"
-        :danger="() => cols.toString() === '' || cols <= 0"
+        :danger="!validCols"
         type="number"
         class="w-22"
       >
@@ -58,7 +74,7 @@ const resetGame = () => {
       <div class="h-full w-px bg-black dark:bg-white opacity-10" />
       <GuardedInput
         v-model.number="bombs"
-        :danger="() => bombs.toString() === '' || bombs <= 0"
+        :danger="!validBombs"
         type="number"
         class="w-22"
       >
@@ -72,7 +88,7 @@ const resetGame = () => {
         <component
           :is="resetButtonType"
           class="absolute px-5 py-2 rounded-lg"
-          :disabled="rows.toString() === '' || cols.toString() === '' || bombs.toString() === '' || rows <= 0 || cols <= 0 || bombs <= 0"
+          :disabled="!validRows || !validCols || !validBombs"
           @click="resetGame"
         >
           Reset

@@ -2,23 +2,23 @@
 import { styles } from './button-styles'
 
 interface Props {
-  danger?: () => boolean
-  warn?: () => boolean
-  success?: () => boolean
-  primary?: () => boolean
-  alt?: () => boolean
+  danger?: boolean
+  warn?: boolean
+  success?: boolean
+  primary?: boolean
+  alt?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  danger: () => false,
-  warn: () => false,
-  success: () => false,
-  primary: () => false,
-  alt: () => false,
+  danger: false,
+  warn: false,
+  success: false,
+  primary: false,
+  alt: false,
 })
 
 const inputStyle = computed(() => {
-  const [danger, warn, success, primary, alt] = [props.danger(), props.warn(), props.success(), props.primary(), props.alt()]
+  const { danger, warn, success, primary, alt } = props
   if (danger) // priority line
     return styles.danger
   else if (warn)
