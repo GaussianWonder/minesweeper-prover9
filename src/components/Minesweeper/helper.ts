@@ -100,3 +100,21 @@ export const initBoard = (rows: number, cols: number, bombs: number): Minesweepe
     bombs,
   )
 }
+
+export const padBoard = (board: MinesweeperBoard): MinesweeperBoard => {
+  const { rows, cols, cells } = board
+  const newCells: MinesweeperCell[][] = []
+  const colFiller = new Array(20 - cols).fill({ ...initMinesweeperCell }) as MinesweeperCell[]
+  for (let i = 0; i < rows; ++i) {
+    for (let j = 0; j < cols; ++j)
+      newCells[i] = [...cells[i]].concat(...colFiller)
+  }
+  for (let i = 1; i <= 12 - rows; ++i)
+    newCells.push(new Array(20).fill({ ...initMinesweeperCell }) as MinesweeperCell[])
+
+  return {
+    rows,
+    cols,
+    cells: newCells,
+  }
+}

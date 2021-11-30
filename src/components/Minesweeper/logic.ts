@@ -25,19 +25,41 @@ export const revealAll = (board: MinesweeperBoard): MinesweeperBoard => {
 }
 
 export const recursiveReveal = (board: MinesweeperBoard, i: number, j: number): void => {
-  const allNeighbors = neighbordsOf(i, j)
-    .filter(outOfBoundsFilter(board.rows, board.cols))
-    .filter(([dx, dy]) => board.cells[dx][dy].isRevealed === false)
+  //* Nice and animated, but cumbersome to keep track of
+  // const allNeighbors = neighbordsOf(i, j)
+  //   .filter(outOfBoundsFilter(board.rows, board.cols))
+  //   .filter(([dx, dy]) => board.cells[dx][dy].isRevealed === false)
 
-  allNeighbors.forEach(([dx, dy]) => {
-    board.cells[dx][dy] = reveal(board.cells[dx][dy])
-  })
+  // allNeighbors.forEach(([dx, dy]) => {
+  //   board.cells[dx][dy] = reveal(board.cells[dx][dy])
+  // })
 
-  allNeighbors.filter(cellWithAdjacentBombs(board.cells)).forEach(([dx, dy]) => {
-    setTimeout(() => {
-      recursiveReveal(board, dx, dy)
-    }, 25)
-  })
+  // allNeighbors.filter(cellWithAdjacentBombs(board.cells)).forEach(([dx, dy]) => {
+  //   setTimeout(() => {
+  //     recursiveReveal(board, dx, dy)
+  //   }, 25)
+  // })
+  const boundCheck = outOfBoundsFilter(board.rows, board.cols)
+  const revealCheck = ([dx, dy]: [number, number]) => board.cells[dx][dy].isRevealed === false
+  const noBombCheck = cellWithAdjacentBombs(board.cells, 0)
+  const neighborQueue = [[i, j]]
+  while (neighborQueue.length > 0) {
+    const pair = neighborQueue.pop()
+    if (!pair) return
+    const [x, y] = pair
+
+    const neighbors = neighbordsOf(x, y)
+      .filter(boundCheck)
+      .filter(revealCheck)
+
+    neighbors.forEach(([dx, dy]) => {
+      board.cells[dx][dy] = reveal(board.cells[dx][dy])
+    })
+
+    neighbors
+      .filter(noBombCheck)
+      .forEach(pair => neighborQueue.push(pair))
+  }
 }
 
 export const unreveal = (cell: MinesweeperCell): MinesweeperCell => {

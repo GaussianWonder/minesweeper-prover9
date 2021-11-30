@@ -38,7 +38,7 @@ const resetGame = () => {
   gameState.setRowCount(rows.value)
   gameState.setColCount(cols.value)
   gameState.setBombCount(bombs.value)
-  // TODO reset logic
+  gameState.setIsFreshState(true)
 }
 </script>
 

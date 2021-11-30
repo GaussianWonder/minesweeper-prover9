@@ -3,8 +3,48 @@
   windows_subsystem = "windows"
 )]
 
+use serde::{Serialize, Deserialize};
+
+// export interface MinesweeperCell {
+//   isBomb: boolean
+//   isRevealed: boolean // isRevealed, isFlagged and isUnknown cannot be true at the same time
+//   isFlagged: boolean
+//   isUnknown: boolean
+//   adjacentBombs: number // shown when isRevealed and not a bomb
+//   isHint: boolean // no purpose yet, should be active when it is a hint and not revealed
+// }
+
+// export interface MinesweeperBoard {
+//   rows: number
+//   cols: number
+//   cells: MinesweeperCell[][]
+// }
+
+#[derive(Serialize, Deserialize, Debug)]
+struct MinesweeperCell {
+  isBomb: bool,
+  isRevealed: bool,
+  isFlagged: bool,
+  isUnknown: bool,
+  adjacentBombs: i32,
+  isHint: bool
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct MinesweeperBoard {
+  rows: i32,
+  cols: i32,
+  cells: [[MinesweeperCell; 20]; 12]
+}
+
+#[tauri::command]
+fn prover9_request(board: MinesweeperBoard) {
+  println!("{:?}", board);
+}
+
 fn main() {
   tauri::Builder::default()
+    .invoke_handler(tauri::generate_handler![prover9_request])
     .run(tauri::generate_context!())
     .expect("error while running tauri application");
 }

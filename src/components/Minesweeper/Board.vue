@@ -11,7 +11,8 @@ watchEffect(() => {
   const { row, col, bomb } = gameState.config
   // when this code is executed, this means that the game state inside the store has been changed => reset the game
   board.value = initBoard(row, col, bomb)
-  // TODO reset logic
+  gameState.setIsFreshState(true)
+  gameState.setBoard(board.value)
 })
 
 const revealCell = (i: number, j: number) => {
@@ -27,14 +28,19 @@ const revealCell = (i: number, j: number) => {
   else if (!isFlagged && !isUnknown) {
     board.value = revealAll(board.value)
   }
+
+  gameState.setIsFreshState(false)
+  gameState.setBoard(board.value)
 }
 
 const flagCell = (i: number, j: number) => {
   board.value.cells[i][j] = flagToggle(board.value.cells[i][j])
+  gameState.setBoard(board.value)
 }
 
 const questionCell = (i: number, j: number) => {
   board.value.cells[i][j] = markUnknownToggle(board.value.cells[i][j])
+  gameState.setBoard(board.value)
 }
 
 const ignore = () => {}

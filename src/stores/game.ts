@@ -1,4 +1,5 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
+import { MinesweeperBoard } from '~/components/Minesweeper/helper'
 
 export const useGameStore = defineStore('game', () => {
   /**
@@ -9,6 +10,8 @@ export const useGameStore = defineStore('game', () => {
     col: 9,
     bomb: 10,
   })
+  const isFresh = ref(false)
+  const board = ref<MinesweeperBoard | undefined>(undefined)
 
   /**
    * Partial changes to the current game config
@@ -32,11 +35,23 @@ export const useGameStore = defineStore('game', () => {
     }
   }
 
+  function setIsFreshState(state: boolean) {
+    isFresh.value = state
+  }
+
+  function setBoard(newBoard: MinesweeperBoard) {
+    board.value = newBoard
+  }
+
   return {
     config,
+    isFresh,
+    board,
     setRowCount,
     setColCount,
     setBombCount,
+    setIsFreshState,
+    setBoard,
   }
 })
 
