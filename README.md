@@ -37,3 +37,10 @@ GTK Theme: Breeze [GTK2/3]
 CPU: AMD Ryzen 7 4800H with Radeon Graphics @ 16x 2.894GHz
 GPU: NVIDIA GeForce GTX 1650 Ti
 ```
+
+## Images
+
+![Light mode](/assets/light_mode.png)
+![Night mode](/assets/night_mode.png)
+![Light error](/assets/light_errors.png)
+![Night error](/assets/night_errors.png)
