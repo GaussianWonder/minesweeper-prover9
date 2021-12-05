@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { MinesweeperBoard, initBoard } from './helper'
-import { reveal, flagToggle, markUnknownToggle, recursiveReveal, revealAll } from './logic'
+import { reveal, flagToggle, markUnknownToggle, recursiveReveal, forceBoardReveal } from './logic'
 import { useGameStore } from '~/stores/game'
 
 const gameState = useGameStore()
@@ -16,6 +16,9 @@ watchEffect(() => {
 })
 
 const revealCell = (i: number, j: number) => {
+  if (board.value.cells[i][j].isRevealed)
+    return
+
   const cell = board.value.cells[i][j]
   const { adjacentBombs, isBomb, isFlagged, isUnknown } = cell
 
@@ -26,7 +29,8 @@ const revealCell = (i: number, j: number) => {
       board.value.cells[i][j] = reveal(cell)
   }
   else if (!isFlagged && !isUnknown) {
-    board.value = revealAll(board.value)
+    forceBoardReveal(board.value, i, j)
+    gameState.setIsGameOver(true)
   }
 
   gameState.setIsFreshState(false)
@@ -34,13 +38,36 @@ const revealCell = (i: number, j: number) => {
 }
 
 const flagCell = (i: number, j: number) => {
+  if (board.value.cells[i][j].isRevealed)
+    return
   board.value.cells[i][j] = flagToggle(board.value.cells[i][j])
   gameState.setBoard(board.value)
 }
 
 const questionCell = (i: number, j: number) => {
+  if (board.value.cells[i][j].isRevealed)
+    return
   board.value.cells[i][j] = markUnknownToggle(board.value.cells[i][j])
   gameState.setBoard(board.value)
+}
+
+const breakTheIce = () => {
+  const chosen = board.value.cells
+    .flatMap((row, ri) => row
+      .map((cell, ci) =>
+        ({
+          bombs: cell.adjacentBombs + (cell.isBomb ? 1 : 0),
+          matrixIndex: [ri, ci],
+        }),
+      )
+      .filter(c => c.bombs === 0),
+    )
+    .sort(() => (Math.random() > 0.5) ? 1 : -1)
+    .pop()
+
+  if (!chosen) return
+  const { matrixIndex } = chosen
+  revealCell(matrixIndex[0], matrixIndex[1])
 }
 
 const ignore = () => {}
@@ -62,6 +89,14 @@ const ignore = () => {}
         @click.middle.prevent="questionCell(ri, ci)"
       >
       </Cell>
+    </div>
+    <div
+      v-if="gameState.isFresh"
+      class=""
+    >
+      <SuccessButton @click.prevent="breakTheIce">
+        Break the ice
+      </SuccessButton>
     </div>
   </div>
 </template>

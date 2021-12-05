@@ -39,6 +39,7 @@ const resetGame = () => {
   gameState.setColCount(cols.value)
   gameState.setBombCount(bombs.value)
   gameState.setIsFreshState(true)
+  gameState.setIsGameOver(false)
 }
 </script>
 

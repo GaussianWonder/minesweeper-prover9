@@ -6,8 +6,8 @@
 pub mod Minesweeper;
 
 #[tauri::command]
-fn prover9_request(board: Minesweeper::Board) {
-  println!("{:?}", board);
+fn prover9_request(board: Minesweeper::Board, message: String) {
+  println!("Requested {} from {:#?}", message, board);
 }
 
 fn main() {

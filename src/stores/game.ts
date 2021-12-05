@@ -12,6 +12,7 @@ export const useGameStore = defineStore('game', () => {
   })
   const isFresh = ref(false)
   const board = ref<MinesweeperBoard | undefined>(undefined)
+  const isGameOver = ref(false)
 
   /**
    * Partial changes to the current game config
@@ -39,6 +40,10 @@ export const useGameStore = defineStore('game', () => {
     isFresh.value = state
   }
 
+  function setIsGameOver(state: boolean) {
+    isGameOver.value = state
+  }
+
   function setBoard(newBoard: MinesweeperBoard) {
     board.value = newBoard
   }
@@ -47,11 +52,13 @@ export const useGameStore = defineStore('game', () => {
     config,
     isFresh,
     board,
+    isGameOver,
     setRowCount,
     setColCount,
     setBombCount,
     setIsFreshState,
     setBoard,
+    setIsGameOver,
   }
 })
 
