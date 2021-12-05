@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { invoke } from '@tauri-apps/api/tauri'
-import { padBoard } from './helper'
 import { useGameStore } from '~/stores/game'
 const gameState = useGameStore()
 
@@ -15,7 +14,7 @@ const launchRequest = (message: RequestMessage) => {
   const { board } = gameState
   if (board) {
     invoke('prover9_request', {
-      board: padBoard(board),
+      board,
       message,
     })
   }

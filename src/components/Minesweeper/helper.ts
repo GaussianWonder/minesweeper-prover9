@@ -101,6 +101,7 @@ export const initBoard = (rows: number, cols: number, bombs: number): Minesweepe
   )
 }
 
+// this is deprecated and no longer neede, but i'll keep it just in case a fixed array-size is needed in the future
 export const padBoard = (board: MinesweeperBoard): MinesweeperBoard => {
   const { rows, cols, cells } = board
   const newCells: MinesweeperCell[][] = []

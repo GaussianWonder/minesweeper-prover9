@@ -14,5 +14,5 @@ pub struct Cell {
 pub struct Board {
   rows: i32,
   cols: i32,
-  cells: [[Cell; 20]; 12]
+  cells: Vec<Vec<Cell>>
 }
