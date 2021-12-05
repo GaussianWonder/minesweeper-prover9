@@ -3,27 +3,10 @@
   windows_subsystem = "windows"
 )]
 
-use serde::{Serialize, Deserialize};
-
-#[derive(Serialize, Deserialize, Debug)]
-struct MinesweeperCell {
-  isBomb: bool,
-  isRevealed: bool,
-  isFlagged: bool,
-  isUnknown: bool,
-  adjacentBombs: i32,
-  isHint: bool
-}
-
-#[derive(Serialize, Deserialize, Debug)]
-struct MinesweeperBoard {
-  rows: i32,
-  cols: i32,
-  cells: [[MinesweeperCell; 20]; 12]
-}
+pub mod Minesweeper;
 
 #[tauri::command]
-fn prover9_request(board: MinesweeperBoard) {
+fn prover9_request(board: Minesweeper::Board) {
   println!("{:?}", board);
 }
 
