@@ -1,4 +1,5 @@
 use std::fmt::Write;
+use std::fs;
 use serde::{Serialize, Deserialize};
 use combinations::Combinations;
 
@@ -23,6 +24,8 @@ type IndexPair = (i32, i32);
 type IndexVector = Vec<IndexPair>;
 type Matrix<T> = Vec<Vec<T>>;
 type StatementSource = Vec<Vec<IndexPair>>;
+type Statement = String;
+type Statements = Vec<String>;
 
 // directions for all possible neighbors
 const RELATIVE_NEIGHBORS: [IndexPair; 8] = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)];
@@ -168,10 +171,10 @@ pub fn get_statements(board: &Board) -> Vec<String> {
   let mut implications: Vec<String> = vec![];
 
   for statement in &statements {
-    let s_imp: Vec<&str> = statement.split("|").collect();
+    let s_imp: Vec<&str> = statement.split("|").collect(); // split all the or statemenets
     let imp_cnt = s_imp.len();
-    if imp_cnt > 1 {
-      for i in 0..imp_cnt {
+    if imp_cnt > 1 { // if more than one or statement
+      for i in 0..imp_cnt { // imply that if one is true, the others are not
         let mut imp: String = "".to_string();
 
         let subject = s_imp[i];
@@ -193,4 +196,25 @@ pub fn get_statements(board: &Board) -> Vec<String> {
   statements.append(&mut implications);
 
   statements
-} 
+}
+
+pub fn make_input_file(statements: Vec<String>) {
+  let prepared_statements: String = statements.join(".\n"); // end statements and new line them
+  let mut file_contents: String = "".to_string();
+  write!(file_contents, "
+assign(max_seconds, 30).
+set(binary_resolution).
+set(print_gen).
+
+formulas(assumptions).
+{}
+end_of_list.
+
+formulas(goals).
+M.
+end_of_list.
+    ",
+    prepared_statements,
+  );
+  fs::write("minesweeper.in", &mut file_contents).expect("Unable to write file!");
+}
