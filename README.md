@@ -4,6 +4,8 @@ This is a simple configurable minesweeper game that you can play.
 
 The objective of this project is to solve the puzzle using **Prover9**.
 
+[Documentation can be found here](/assets/Minesweeper_Mace4.pdf)
+
 ## Dev
 
 ```bash
