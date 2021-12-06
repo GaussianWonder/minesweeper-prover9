@@ -40,7 +40,9 @@ GPU: NVIDIA GeForce GTX 1650 Ti
 
 ## Images
 
-<img src="./demonstration.gif" />
+<img src="./assets/demonstration.gif" />
+
+![Unsolvable](/assets/unsolvable.png)
 
 ![Light mode](/assets/light_mode.png)
 ![Night mode](/assets/night_mode.png)
