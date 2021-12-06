@@ -1,12 +1,13 @@
 use std::fmt::Write;
 use std::fs;
-use std::process::{Command, Stdio};
+use std::process::{Command};
 use std::io::prelude::*;
+use std::collections::HashMap;
 use regex::Regex;
 use serde::{Serialize, Deserialize};
 use combinations::Combinations;
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Clone, Serialize, Deserialize, Hash, Eq, PartialEq, Debug)]
 pub struct Cell {
   isBomb: bool,
   isRevealed: bool,
@@ -16,7 +17,7 @@ pub struct Cell {
   isHint: bool
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Clone, Serialize, Deserialize, Hash, Eq, PartialEq, Debug)]
 pub struct Board {
   rows: i32,
   cols: i32,
@@ -29,7 +30,18 @@ type Matrix<T> = Vec<Vec<T>>;
 type StatementSource = Vec<Vec<IndexPair>>;
 type Statement = String;
 type Statements = Vec<String>;
-pub type Mace4Model = Vec<(IndexPair, Cell)>;
+pub type IndexedCell = (IndexPair, Cell);
+
+pub fn is_finished(board: &Board) -> bool {
+  for row in &board.cells {
+    for cell in row {
+      if cell.isBomb == true && cell.isFlagged == false {
+        return false
+      }
+    }
+  }
+  return true
+}
 
 // directions for all possible neighbors
 const RELATIVE_NEIGHBORS: [IndexPair; 8] = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)];
@@ -164,15 +176,15 @@ pub fn statement_source_to_string(source: StatementSource) -> String {
   or_cluster
 }
 
-pub fn get_statements(board: &Board) -> Vec<String> {
-  let mut statements: Vec<String> = get_statement_source(board)
+pub fn get_statements(board: &Board) -> Statements {
+  let mut statements: Statements = get_statement_source(board)
     .into_iter()
     .map(|statement| statement_source_to_string(statement))
     .collect();
 
   statements.dedup(); // the commands should be sorted
 
-  let mut implications: Vec<String> = vec![];
+  let mut implications: Statements = vec![];
 
   for statement in &statements {
     let s_imp: Vec<&str> = statement.split("|").collect(); // split all the or statemenets
@@ -202,7 +214,7 @@ pub fn get_statements(board: &Board) -> Vec<String> {
   statements
 }
 
-pub fn make_input_file(statements: Vec<String>) {
+pub fn make_input_file(statements: Statements) {
   let prepared_statements: String = statements.join(".\n"); // end statements and new line them, keep in mind the last one does not have a .
   let mut file_contents: String = "".to_string();
   write!(file_contents, "
@@ -237,6 +249,29 @@ pub fn execute_input_file() -> String {
   stdout
 }
 
+pub fn reduce_cell_state_variation(states: Vec<Cell>) -> Cell {
+  let mut is_bomb = true;
+  let mut is_not_bomb = true;
+  for state in states {
+    if state.isBomb == false {
+      is_bomb = false; // all states should be bombs for this to be 100% a bomb
+    }
+    if state.isBomb == true { // all states should be safe for this to be 100% safe
+      is_not_bomb = false;
+    }
+  }
+  let is_unknown = !(is_bomb ^ is_not_bomb);
+
+  Cell {
+    isBomb: is_bomb,
+    isRevealed: is_not_bomb,
+    isFlagged: is_bomb,
+    isUnknown: is_unknown,
+    adjacentBombs: 0,
+    isHint: false,
+  }
+}
+
 // Regex to find model bodies 
 // interpretation\( \d+, \[number=(\d+), seconds=\d+], \[((?:\s+relation\(m\d+, \[ \d+ \]\),?)+)\s+\]\)\.
 // group1 -> index
@@ -246,12 +281,11 @@ pub fn execute_input_file() -> String {
 // ((?:relation\(m(\d+), \[ (\d+) \]\),?)+)
 // group1 -> matrix index
 // group2 -> isBomb value
-pub fn parse_mace4_output(output: String, board: Board) -> Vec<Mace4Model> {
-  let mut parsed_interpretations: Vec<Mace4Model> = vec![];
+pub fn parse_mace4_output(output: String, board: Board) -> Vec<IndexedCell> {
+  let mut imap = HashMap::<IndexPair, Vec<Cell>>::new();
 
   let i_re = regex::Regex::new(r"interpretation\( \d+, \[number=(\d+), seconds=\d+], \[((?:\s+relation\(m\d+, \[ \d+ \]\),?)+)\s+\]\)\.").unwrap();
   for interpretation in i_re.find_iter(&output) {
-    let mut parsed_result: Mace4Model = vec![];
     // println!("{:?}: {}", interpretation, interpretation.as_str());
     let r_re = regex::Regex::new(r"((?:relation\(m(\d+), \[ (\d+) \]\),?)+)").unwrap();
     for relation in r_re.find_iter(interpretation.as_str()) {
@@ -266,23 +300,29 @@ pub fn parse_mace4_output(output: String, board: Board) -> Vec<Mace4Model> {
 
       let index_i: i32 = encoded_index.chars().nth(0).unwrap().to_digit(10).unwrap() as i32;
       let index_j: i32 = encoded_index.chars().nth(1).unwrap().to_digit(10).unwrap() as i32;
+      let pair: IndexPair = (index_i, index_j);
+      let cell = Cell {
+        isBomb: is_bomb,
+        isRevealed: false,
+        isFlagged: false,
+        isUnknown: false,
+        adjacentBombs: board.cells[index_i as usize][index_j as usize].adjacentBombs,
+        isHint: false,
+      };
 
-      parsed_result.push((
-        (index_i, index_j) as IndexPair,
-        Cell {
-          isBomb: is_bomb,
-          isRevealed: false,
-          isFlagged: false,
-          isUnknown: false,
-          adjacentBombs: board.cells[index_i as usize][index_j as usize].adjacentBombs,
-          isHint: false,
-        },
-      ));
+      if let Some(states) = imap.get_mut(&pair) {
+        states.push(cell);
+      }
+      else {
+        imap.insert(pair, vec![cell]);
+      }
     }
-
-    parsed_interpretations.push(parsed_result);
   }
 
-  parsed_interpretations
+  let mut solved_cells: Vec<IndexedCell> = vec![];
+  for (key, value) in imap {
+    solved_cells.push((key, reduce_cell_state_variation(value)));
+  }
+  solved_cells
 }
 

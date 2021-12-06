@@ -1,7 +1,7 @@
 ============================== Mace4 =================================
 Mace4 (64) version 2009-11A, November 2009.
-Process 30270 was started by virghi on virghi-pc,
-Mon Dec  6 04:13:30 2021
+Process 5898 was started by virghi on virghi-pc,
+Mon Dec  6 21:07:13 2021
 The command was "mace4 -c -m -1 -n 2 -f minesweeper.in".
 ============================== end of head ===========================
 
@@ -12,45 +12,48 @@ The command was "mace4 -c -m -1 -n 2 -f minesweeper.in".
 assign(max_seconds,30).
 
 formulas(assumptions).
-m30.
-m30 & m40 | m30 & m41 | m30 & m42 | m40 & m41 | m40 & m42 | m41 & m42.
-m41 | m42.
-m42.
-m42 & m52 | m42 & m53 | m42 & m54 | m52 & m53 | m52 & m54 | m53 & m54.
-m53 | m54 | m55.
-m46 | m54 | m55 | m56.
-m46 & m56 | m46 & m57 | m46 & m58 | m56 & m57 | m56 & m58 | m57 & m58.
-m57 | m58.
-m46.
-m30 & m40 -> -(m41 & m42 | m30 & m41 | m30 & m42 | m40 & m41 | m40 & m42).
-m30 & m41 -> -(m30 & m40 | m41 & m42 | m30 & m42 | m40 & m41 | m40 & m42).
-m30 & m42 -> -(m30 & m40 | m30 & m41 | m41 & m42 | m40 & m41 | m40 & m42).
-m40 & m41 -> -(m30 & m40 | m30 & m41 | m30 & m42 | m41 & m42 | m40 & m42).
-m40 & m42 -> -(m30 & m40 | m30 & m41 | m30 & m42 | m40 & m41 | m41 & m42).
-m41 & m42 -> -(m30 & m40 | m30 & m41 | m30 & m42 | m40 & m41 | m40 & m42).
-m41 -> -m42.
-m42 -> -m41.
-m42 & m52 -> -(m53 & m54 | m42 & m53 | m42 & m54 | m52 & m53 | m52 & m54).
-m42 & m53 -> -(m42 & m52 | m53 & m54 | m42 & m54 | m52 & m53 | m52 & m54).
-m42 & m54 -> -(m42 & m52 | m42 & m53 | m53 & m54 | m52 & m53 | m52 & m54).
-m52 & m53 -> -(m42 & m52 | m42 & m53 | m42 & m54 | m53 & m54 | m52 & m54).
-m52 & m54 -> -(m42 & m52 | m42 & m53 | m42 & m54 | m52 & m53 | m53 & m54).
-m53 & m54 -> -(m42 & m52 | m42 & m53 | m42 & m54 | m52 & m53 | m52 & m54).
-m53 -> -(m55 | m54).
-m54 -> -(m53 | m55).
-m55 -> -(m53 | m54).
-m46 -> -(m56 | m54 | m55).
-m54 -> -(m46 | m56 | m55).
-m55 -> -(m46 | m54 | m56).
-m56 -> -(m46 | m54 | m55).
-m46 & m56 -> -(m57 & m58 | m46 & m57 | m46 & m58 | m56 & m57 | m56 & m58).
-m46 & m57 -> -(m46 & m56 | m57 & m58 | m46 & m58 | m56 & m57 | m56 & m58).
-m46 & m58 -> -(m46 & m56 | m46 & m57 | m57 & m58 | m56 & m57 | m56 & m58).
-m56 & m57 -> -(m46 & m56 | m46 & m57 | m46 & m58 | m57 & m58 | m56 & m58).
-m56 & m58 -> -(m46 & m56 | m46 & m57 | m46 & m58 | m56 & m57 | m57 & m58).
-m57 & m58 -> -(m46 & m56 | m46 & m57 | m46 & m58 | m56 & m57 | m56 & m58).
-m57 -> -m58.
-m58 -> -m57.
+m10.
+m18.
+m47.
+m47 | m58.
+m47.
+m47 & m58 | m47 & m68 | m58 & m68.
+m58 & m68 | m58 & m76 | m58 & m78 | m68 & m76 | m68 & m78 | m76 & m78.
+m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88 | m78 & m86 & m87 & m88.
+m76.
+m76 & m86.
+m81.
+m81 & m82.
+m81 & m82 & m83.
+m81.
+m82 & m83.
+m83.
+m47 -> -m58.
+m58 -> -m47.
+m47 & m58 -> -(m58 & m68 | m47 & m68).
+m47 & m68 -> -(m47 & m58 | m58 & m68).
+m58 & m68 -> -(m47 & m58 | m47 & m68).
+m58 & m68 -> -(m76 & m78 | m58 & m76 | m58 & m78 | m68 & m76 | m68 & m78).
+m58 & m76 -> -(m58 & m68 | m76 & m78 | m58 & m78 | m68 & m76 | m68 & m78).
+m58 & m78 -> -(m58 & m68 | m58 & m76 | m76 & m78 | m68 & m76 | m68 & m78).
+m68 & m76 -> -(m58 & m68 | m58 & m76 | m58 & m78 | m76 & m78 | m68 & m78).
+m68 & m78 -> -(m58 & m68 | m58 & m76 | m58 & m78 | m68 & m76 | m76 & m78).
+m76 & m78 -> -(m58 & m68 | m58 & m76 | m58 & m78 | m68 & m76 | m68 & m78).
+m68 & m76 & m78 & m86 -> -(m78 & m86 & m87 & m88 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88).
+m68 & m76 & m78 & m87 -> -(m68 & m76 & m78 & m86 | m78 & m86 & m87 & m88 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88).
+m68 & m76 & m78 & m88 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m78 & m86 & m87 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88).
+m68 & m76 & m86 & m87 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m78 & m86 & m87 & m88 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88).
+m68 & m76 & m86 & m88 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m78 & m86 & m87 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88).
+m68 & m76 & m87 & m88 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m78 & m86 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88).
+m68 & m78 & m86 & m87 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m78 & m86 & m87 & m88 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88).
+m68 & m78 & m86 & m88 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m78 & m86 & m87 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88).
+m68 & m78 & m87 & m88 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m78 & m86 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88).
+m68 & m86 & m87 & m88 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m78 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88).
+m76 & m78 & m86 & m87 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m78 & m86 & m87 & m88 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88).
+m76 & m78 & m86 & m88 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m78 & m86 & m87 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88).
+m76 & m78 & m87 & m88 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m78 & m86 & m87 & m88 | m76 & m86 & m87 & m88).
+m76 & m86 & m87 & m88 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m78 & m86 & m87 & m88).
+m78 & m86 & m87 & m88 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88).
 end_of_list.
 
 formulas(goals).
@@ -67,121 +70,137 @@ end_of_list.
 ============================== PROCESS NON-CLAUSAL FORMULAS ==========
 
 % Formulas that are not ordinary clauses:
-1 m30 & m40 | m30 & m41 | m30 & m42 | m40 & m41 | m40 & m42 | m41 & m42 # label(non_clause).  [assumption].
-2 m42 & m52 | m42 & m53 | m42 & m54 | m52 & m53 | m52 & m54 | m53 & m54 # label(non_clause).  [assumption].
-3 m46 & m56 | m46 & m57 | m46 & m58 | m56 & m57 | m56 & m58 | m57 & m58 # label(non_clause).  [assumption].
-4 m30 & m40 -> -(m41 & m42 | m30 & m41 | m30 & m42 | m40 & m41 | m40 & m42) # label(non_clause).  [assumption].
-5 m30 & m41 -> -(m30 & m40 | m41 & m42 | m30 & m42 | m40 & m41 | m40 & m42) # label(non_clause).  [assumption].
-6 m30 & m42 -> -(m30 & m40 | m30 & m41 | m41 & m42 | m40 & m41 | m40 & m42) # label(non_clause).  [assumption].
-7 m40 & m41 -> -(m30 & m40 | m30 & m41 | m30 & m42 | m41 & m42 | m40 & m42) # label(non_clause).  [assumption].
-8 m40 & m42 -> -(m30 & m40 | m30 & m41 | m30 & m42 | m40 & m41 | m41 & m42) # label(non_clause).  [assumption].
-9 m41 & m42 -> -(m30 & m40 | m30 & m41 | m30 & m42 | m40 & m41 | m40 & m42) # label(non_clause).  [assumption].
-10 m41 -> -m42 # label(non_clause).  [assumption].
-11 m42 -> -m41 # label(non_clause).  [assumption].
-12 m42 & m52 -> -(m53 & m54 | m42 & m53 | m42 & m54 | m52 & m53 | m52 & m54) # label(non_clause).  [assumption].
-13 m42 & m53 -> -(m42 & m52 | m53 & m54 | m42 & m54 | m52 & m53 | m52 & m54) # label(non_clause).  [assumption].
-14 m42 & m54 -> -(m42 & m52 | m42 & m53 | m53 & m54 | m52 & m53 | m52 & m54) # label(non_clause).  [assumption].
-15 m52 & m53 -> -(m42 & m52 | m42 & m53 | m42 & m54 | m53 & m54 | m52 & m54) # label(non_clause).  [assumption].
-16 m52 & m54 -> -(m42 & m52 | m42 & m53 | m42 & m54 | m52 & m53 | m53 & m54) # label(non_clause).  [assumption].
-17 m53 & m54 -> -(m42 & m52 | m42 & m53 | m42 & m54 | m52 & m53 | m52 & m54) # label(non_clause).  [assumption].
-18 m53 -> -(m55 | m54) # label(non_clause).  [assumption].
-19 m54 -> -(m53 | m55) # label(non_clause).  [assumption].
-20 m55 -> -(m53 | m54) # label(non_clause).  [assumption].
-21 m46 -> -(m56 | m54 | m55) # label(non_clause).  [assumption].
-22 m54 -> -(m46 | m56 | m55) # label(non_clause).  [assumption].
-23 m55 -> -(m46 | m54 | m56) # label(non_clause).  [assumption].
-24 m56 -> -(m46 | m54 | m55) # label(non_clause).  [assumption].
-25 m46 & m56 -> -(m57 & m58 | m46 & m57 | m46 & m58 | m56 & m57 | m56 & m58) # label(non_clause).  [assumption].
-26 m46 & m57 -> -(m46 & m56 | m57 & m58 | m46 & m58 | m56 & m57 | m56 & m58) # label(non_clause).  [assumption].
-27 m46 & m58 -> -(m46 & m56 | m46 & m57 | m57 & m58 | m56 & m57 | m56 & m58) # label(non_clause).  [assumption].
-28 m56 & m57 -> -(m46 & m56 | m46 & m57 | m46 & m58 | m57 & m58 | m56 & m58) # label(non_clause).  [assumption].
-29 m56 & m58 -> -(m46 & m56 | m46 & m57 | m46 & m58 | m56 & m57 | m57 & m58) # label(non_clause).  [assumption].
-30 m57 & m58 -> -(m46 & m56 | m46 & m57 | m46 & m58 | m56 & m57 | m56 & m58) # label(non_clause).  [assumption].
-31 m57 -> -m58 # label(non_clause).  [assumption].
-32 m58 -> -m57 # label(non_clause).  [assumption].
+1 m47 & m58 | m47 & m68 | m58 & m68 # label(non_clause).  [assumption].
+2 m58 & m68 | m58 & m76 | m58 & m78 | m68 & m76 | m68 & m78 | m76 & m78 # label(non_clause).  [assumption].
+3 m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88 | m78 & m86 & m87 & m88 # label(non_clause).  [assumption].
+4 m76 & m86 # label(non_clause).  [assumption].
+5 m81 & m82 # label(non_clause).  [assumption].
+6 m81 & m82 & m83 # label(non_clause).  [assumption].
+7 m82 & m83 # label(non_clause).  [assumption].
+8 m47 -> -m58 # label(non_clause).  [assumption].
+9 m58 -> -m47 # label(non_clause).  [assumption].
+10 m47 & m58 -> -(m58 & m68 | m47 & m68) # label(non_clause).  [assumption].
+11 m47 & m68 -> -(m47 & m58 | m58 & m68) # label(non_clause).  [assumption].
+12 m58 & m68 -> -(m47 & m58 | m47 & m68) # label(non_clause).  [assumption].
+13 m58 & m68 -> -(m76 & m78 | m58 & m76 | m58 & m78 | m68 & m76 | m68 & m78) # label(non_clause).  [assumption].
+14 m58 & m76 -> -(m58 & m68 | m76 & m78 | m58 & m78 | m68 & m76 | m68 & m78) # label(non_clause).  [assumption].
+15 m58 & m78 -> -(m58 & m68 | m58 & m76 | m76 & m78 | m68 & m76 | m68 & m78) # label(non_clause).  [assumption].
+16 m68 & m76 -> -(m58 & m68 | m58 & m76 | m58 & m78 | m76 & m78 | m68 & m78) # label(non_clause).  [assumption].
+17 m68 & m78 -> -(m58 & m68 | m58 & m76 | m58 & m78 | m68 & m76 | m76 & m78) # label(non_clause).  [assumption].
+18 m76 & m78 -> -(m58 & m68 | m58 & m76 | m58 & m78 | m68 & m76 | m68 & m78) # label(non_clause).  [assumption].
+19 m68 & m76 & m78 & m86 -> -(m78 & m86 & m87 & m88 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88) # label(non_clause).  [assumption].
+20 m68 & m76 & m78 & m87 -> -(m68 & m76 & m78 & m86 | m78 & m86 & m87 & m88 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88) # label(non_clause).  [assumption].
+21 m68 & m76 & m78 & m88 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m78 & m86 & m87 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88) # label(non_clause).  [assumption].
+22 m68 & m76 & m86 & m87 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m78 & m86 & m87 & m88 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88) # label(non_clause).  [assumption].
+23 m68 & m76 & m86 & m88 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m78 & m86 & m87 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88) # label(non_clause).  [assumption].
+24 m68 & m76 & m87 & m88 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m78 & m86 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88) # label(non_clause).  [assumption].
+25 m68 & m78 & m86 & m87 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m78 & m86 & m87 & m88 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88) # label(non_clause).  [assumption].
+26 m68 & m78 & m86 & m88 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m78 & m86 & m87 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88) # label(non_clause).  [assumption].
+27 m68 & m78 & m87 & m88 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m78 & m86 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88) # label(non_clause).  [assumption].
+28 m68 & m86 & m87 & m88 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m78 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88) # label(non_clause).  [assumption].
+29 m76 & m78 & m86 & m87 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m78 & m86 & m87 & m88 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88) # label(non_clause).  [assumption].
+30 m76 & m78 & m86 & m88 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m78 & m86 & m87 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88) # label(non_clause).  [assumption].
+31 m76 & m78 & m87 & m88 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m78 & m86 & m87 & m88 | m76 & m86 & m87 & m88) # label(non_clause).  [assumption].
+32 m76 & m86 & m87 & m88 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m78 & m86 & m87 & m88) # label(non_clause).  [assumption].
+33 m78 & m86 & m87 & m88 -> -(m68 & m76 & m78 & m86 | m68 & m76 & m78 & m87 | m68 & m76 & m78 & m88 | m68 & m76 & m86 & m87 | m68 & m76 & m86 & m88 | m68 & m76 & m87 & m88 | m68 & m78 & m86 & m87 | m68 & m78 & m86 & m88 | m68 & m78 & m87 & m88 | m68 & m86 & m87 & m88 | m76 & m78 & m86 & m87 | m76 & m78 & m86 & m88 | m76 & m78 & m87 & m88 | m76 & m86 & m87 & m88) # label(non_clause).  [assumption].
 
 ============================== end of process non-clausal formulas ===
 
 ============================== CLAUSES FOR SEARCH ====================
 
 formulas(mace4_clauses).
-m30.
-m30 | m40 | m41.
-m30 | m40 | m42.
-m30 | m41 | m42.
-m40 | m41 | m42.
-m41 | m42.
-m42.
-m42 | m52 | m53.
-m42 | m52 | m54.
-m42 | m53 | m54.
-m52 | m53 | m54.
-m53 | m54 | m55.
-m46 | m54 | m55 | m56.
-m46 | m56 | m57.
-m46 | m56 | m58.
-m46 | m57 | m58.
-m56 | m57 | m58.
-m57 | m58.
-m46.
--m30 | -m40 | -m41.
--m30 | -m40 | -m42.
--m30 | -m41 | -m40.
--m30 | -m41 | -m42.
--m30 | -m42 | -m40.
--m30 | -m42 | -m41.
--m40 | -m41 | -m30.
--m40 | -m41 | -m42.
--m40 | -m42 | -m30.
--m40 | -m42 | -m41.
--m41 | -m42 | -m30.
--m41 | -m42 | -m40.
--m41 | -m42.
--m42 | -m41.
--m42 | -m52 | -m53.
--m42 | -m52 | -m54.
--m42 | -m53 | -m52.
--m42 | -m53 | -m54.
--m42 | -m54 | -m52.
--m42 | -m54 | -m53.
--m52 | -m53 | -m42.
--m52 | -m53 | -m54.
--m52 | -m54 | -m42.
--m52 | -m54 | -m53.
--m53 | -m54 | -m42.
--m53 | -m54 | -m52.
--m53 | -m55.
--m53 | -m54.
--m54 | -m53.
--m54 | -m55.
--m55 | -m53.
--m55 | -m54.
--m46 | -m56.
--m46 | -m54.
--m46 | -m55.
--m54 | -m46.
--m54 | -m56.
--m54 | -m55.
--m55 | -m46.
--m55 | -m54.
--m55 | -m56.
--m56 | -m46.
--m56 | -m54.
--m56 | -m55.
--m46 | -m56 | -m57.
--m46 | -m56 | -m58.
--m46 | -m57 | -m56.
--m46 | -m57 | -m58.
--m46 | -m58 | -m56.
--m46 | -m58 | -m57.
--m56 | -m57 | -m46.
--m56 | -m57 | -m58.
--m56 | -m58 | -m46.
--m56 | -m58 | -m57.
--m57 | -m58 | -m46.
--m57 | -m58 | -m56.
--m57 | -m58.
--m58 | -m57.
+m10.
+m18.
+m47.
+m47 | m58.
+m47.
+m47 | m58.
+m47 | m68.
+m58 | m68.
+m58 | m68 | m76.
+m58 | m68 | m78.
+m58 | m76 | m78.
+m68 | m76 | m78.
+m68 | m76 | m78.
+m68 | m76 | m86.
+m68 | m78 | m86.
+m68 | m87 | m76.
+m68 | m87 | m78.
+m68 | m87 | m86.
+m68 | m87 | m88.
+m68 | m88 | m76.
+m68 | m88 | m78.
+m68 | m88 | m86.
+m76 | m78 | m86.
+m76 | m78 | m87.
+m76 | m78 | m88.
+m76 | m86 | m87.
+m76 | m86 | m88.
+m76 | m88 | m87.
+m78 | m86 | m87.
+m78 | m86 | m88.
+m78 | m87 | m88.
+m86 | m87 | m88.
+m76.
+m76.
+m86.
+m81.
+m81.
+m82.
+m81.
+m82.
+m83.
+m81.
+m82.
+m83.
+m83.
+-m47 | -m58.
+-m58 | -m47.
+-m47 | -m58 | -m68.
+-m47 | -m68 | -m58.
+-m58 | -m68 | -m47.
+-m58 | -m68 | -m76.
+-m58 | -m68 | -m78.
+-m58 | -m76 | -m68.
+-m58 | -m76 | -m78.
+-m58 | -m78 | -m68.
+-m58 | -m78 | -m76.
+-m68 | -m76 | -m58.
+-m68 | -m76 | -m78.
+-m68 | -m78 | -m58.
+-m68 | -m78 | -m76.
+-m76 | -m78 | -m58.
+-m76 | -m78 | -m68.
+-m68 | -m76 | -m78 | -m86 | -m87.
+-m68 | -m76 | -m78 | -m86 | -m88.
+-m68 | -m76 | -m78 | -m87 | -m86.
+-m68 | -m76 | -m78 | -m87 | -m88.
+-m68 | -m76 | -m78 | -m88 | -m86.
+-m68 | -m76 | -m78 | -m88 | -m87.
+-m68 | -m76 | -m86 | -m87 | -m78.
+-m68 | -m76 | -m86 | -m87 | -m88.
+-m68 | -m76 | -m86 | -m88 | -m78.
+-m68 | -m76 | -m86 | -m88 | -m87.
+-m68 | -m76 | -m87 | -m88 | -m78.
+-m68 | -m76 | -m87 | -m88 | -m86.
+-m68 | -m78 | -m86 | -m87 | -m76.
+-m68 | -m78 | -m86 | -m87 | -m88.
+-m68 | -m78 | -m86 | -m88 | -m76.
+-m68 | -m78 | -m86 | -m88 | -m87.
+-m68 | -m78 | -m87 | -m88 | -m76.
+-m68 | -m78 | -m87 | -m88 | -m86.
+-m68 | -m86 | -m87 | -m88 | -m76.
+-m68 | -m86 | -m87 | -m88 | -m78.
+-m76 | -m78 | -m86 | -m87 | -m68.
+-m76 | -m78 | -m86 | -m87 | -m88.
+-m76 | -m78 | -m86 | -m88 | -m68.
+-m76 | -m78 | -m86 | -m88 | -m87.
+-m76 | -m78 | -m87 | -m88 | -m68.
+-m76 | -m78 | -m87 | -m88 | -m86.
+-m76 | -m86 | -m87 | -m88 | -m68.
+-m76 | -m86 | -m87 | -m88 | -m78.
+-m78 | -m86 | -m87 | -m88 | -m68.
+-m78 | -m86 | -m87 | -m88 | -m76.
 end_of_list.
 
 ============================== end of clauses for search =============
@@ -194,29 +213,31 @@ end_of_list.
 
 interpretation( 2, [number=1, seconds=0], [
 
-        relation(m30, [ 1 ]),
+        relation(m10, [ 1 ]),
 
-        relation(m40, [ 0 ]),
+        relation(m18, [ 1 ]),
 
-        relation(m41, [ 0 ]),
+        relation(m47, [ 1 ]),
 
-        relation(m42, [ 1 ]),
+        relation(m58, [ 0 ]),
 
-        relation(m46, [ 1 ]),
+        relation(m68, [ 1 ]),
 
-        relation(m52, [ 0 ]),
+        relation(m76, [ 1 ]),
 
-        relation(m53, [ 1 ]),
+        relation(m78, [ 0 ]),
 
-        relation(m54, [ 0 ]),
+        relation(m81, [ 1 ]),
 
-        relation(m55, [ 0 ]),
+        relation(m82, [ 1 ]),
 
-        relation(m56, [ 0 ]),
+        relation(m83, [ 1 ]),
 
-        relation(m57, [ 0 ]),
+        relation(m86, [ 1 ]),
 
-        relation(m58, [ 1 ])
+        relation(m87, [ 0 ]),
+
+        relation(m88, [ 1 ])
 ]).
 
 ============================== end of model ==========================
@@ -225,29 +246,31 @@ interpretation( 2, [number=1, seconds=0], [
 
 interpretation( 2, [number=2, seconds=0], [
 
-        relation(m30, [ 1 ]),
+        relation(m10, [ 1 ]),
 
-        relation(m40, [ 0 ]),
+        relation(m18, [ 1 ]),
 
-        relation(m41, [ 0 ]),
+        relation(m47, [ 1 ]),
 
-        relation(m42, [ 1 ]),
+        relation(m58, [ 0 ]),
 
-        relation(m46, [ 1 ]),
+        relation(m68, [ 1 ]),
 
-        relation(m52, [ 0 ]),
+        relation(m76, [ 1 ]),
 
-        relation(m53, [ 1 ]),
+        relation(m78, [ 0 ]),
 
-        relation(m54, [ 0 ]),
+        relation(m81, [ 1 ]),
 
-        relation(m55, [ 0 ]),
+        relation(m82, [ 1 ]),
 
-        relation(m56, [ 0 ]),
+        relation(m83, [ 1 ]),
 
-        relation(m57, [ 1 ]),
+        relation(m86, [ 1 ]),
 
-        relation(m58, [ 0 ])
+        relation(m87, [ 1 ]),
+
+        relation(m88, [ 0 ])
 ]).
 
 ============================== end of model ==========================
@@ -257,9 +280,9 @@ interpretation( 2, [number=2, seconds=0], [
 For domain size 2.
 
 Current CPU time: 0.00 seconds (total CPU time: 0.01 seconds).
-Ground clauses: seen=77, kept=42.
-Selections=1, assignments=2, propagations=12, current_models=2.
-Rewrite_terms=0, rewrite_bools=63, indexes=0.
+Ground clauses: seen=92, kept=40.
+Selections=1, assignments=2, propagations=13, current_models=2.
+Rewrite_terms=0, rewrite_bools=55, indexes=0.
 Rules_from_neg_clauses=0, cross_offs=0.
 
 ============================== end of statistics =====================
@@ -268,5 +291,5 @@ User_CPU=0.01, System_CPU=0.00, Wall_clock=0.
 
 Exiting with 2 models.
 
-Process 30270 exit (all_models) Mon Dec  6 04:13:30 2021
-The process finished Mon Dec  6 04:13:30 2021
+Process 5898 exit (all_models) Mon Dec  6 21:07:13 2021
+The process finished Mon Dec  6 21:07:13 2021

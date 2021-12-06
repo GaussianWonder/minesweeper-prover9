@@ -4,15 +4,22 @@
 )]
 
 pub mod Minesweeper;
-use combinations::Combinations;
 
 #[tauri::command]
-fn prover9_request(board: Minesweeper::Board, message: String) {
-  let statements = Minesweeper::get_statements(&board);
-  println!("{:#?}", statements);
-  Minesweeper::make_input_file(statements);
-  let output: String = Minesweeper::execute_input_file();
-  let stateful_cells: Vec<Minesweeper::Mace4Model> = Minesweeper::parse_mace4_output(output, board);
+fn prover9_request(board: Minesweeper::Board, message: String) -> Vec<Minesweeper::IndexedCell> {
+  if Minesweeper::is_finished(&board) {
+    vec![]
+  }
+  else {
+    let statements = Minesweeper::get_statements(&board);
+    if statements.len() == 0 {
+      vec![]
+    }
+    else {
+      Minesweeper::make_input_file(statements);
+      Minesweeper::parse_mace4_output(Minesweeper::execute_input_file(), board)
+    }
+  }
 }
 
 fn main() {

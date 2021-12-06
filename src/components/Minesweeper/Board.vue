@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { MinesweeperBoard, initBoard } from './helper'
-import { reveal, flagToggle, markUnknownToggle, recursiveReveal, forceBoardReveal } from './logic'
+import { MinesweeperCell, MinesweeperBoard, initBoard } from './helper'
+import { reveal, flagToggle, markUnknownToggle, recursiveReveal, forceBoardReveal, recursiveRevealEmpty } from './logic'
 import { useGameStore } from '~/stores/game'
 
 const gameState = useGameStore()
@@ -13,6 +13,20 @@ watchEffect(() => {
   board.value = initBoard(row, col, bomb)
   gameState.setIsFreshState(true)
   gameState.setBoard(board.value)
+})
+
+watchEffect(() => {
+  const { cellsToUpdate, updateCells } = gameState
+  if (cellsToUpdate.length) {
+    cellsToUpdate.forEach(([[i, j], cell]) => {
+      board.value.cells[i][j] = {
+        ...cell,
+        adjacentBombs: board.value.cells[i][j].adjacentBombs,
+      }
+    })
+    updateCells([]) // so that we 100% get notified the next time we need to update
+    recursiveRevealEmpty(board.value)
+  }
 })
 
 const revealCell = (i: number, j: number) => {

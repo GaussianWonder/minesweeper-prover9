@@ -1,3 +1,4 @@
+import BoardVue from './Board.vue'
 import { MinesweeperBoard, MinesweeperCell, neighbordsOf, outOfBoundsFilter, cellWithAdjacentBombs } from './helper'
 
 export const forceReveal = (cell: MinesweeperCell): MinesweeperCell => {
@@ -30,20 +31,6 @@ export const forceBoardReveal = (board: MinesweeperBoard, i: number, j: number) 
 }
 
 export const recursiveReveal = (board: MinesweeperBoard, i: number, j: number): void => {
-  //* Nice and animated, but cumbersome to keep track of
-  // const allNeighbors = neighbordsOf(i, j)
-  //   .filter(outOfBoundsFilter(board.rows, board.cols))
-  //   .filter(([dx, dy]) => board.cells[dx][dy].isRevealed === false)
-
-  // allNeighbors.forEach(([dx, dy]) => {
-  //   board.cells[dx][dy] = reveal(board.cells[dx][dy])
-  // })
-
-  // allNeighbors.filter(cellWithAdjacentBombs(board.cells)).forEach(([dx, dy]) => {
-  //   setTimeout(() => {
-  //     recursiveReveal(board, dx, dy)
-  //   }, 25)
-  // })
   const boundCheck = outOfBoundsFilter(board.rows, board.cols)
   const revealCheck = ([dx, dy]: [number, number]) => board.cells[dx][dy].isRevealed === false
   const noBombCheck = cellWithAdjacentBombs(board.cells, 0)
@@ -65,6 +52,25 @@ export const recursiveReveal = (board: MinesweeperBoard, i: number, j: number): 
       .filter(noBombCheck)
       .forEach(pair => neighborQueue.push(pair))
   }
+}
+
+export const recursiveRevealEmpty = (board: MinesweeperBoard): void => {
+  const boundCheck = outOfBoundsFilter(board.rows, board.cols)
+  const revealCheck = ([dx, dy]: [number, number]) => board.cells[dx][dy].isRevealed === false
+
+  board.cells.forEach((row, ri) => {
+    row.forEach((cell, ci) => {
+      const { isRevealed, adjacentBombs, isBomb } = cell
+      if (isRevealed && adjacentBombs === 0 && !isBomb) {
+        neighbordsOf(ri, ci)
+          .filter(boundCheck)
+          .filter(revealCheck)
+          .forEach(([x, y]) => {
+            recursiveReveal(board, x, y)
+          })
+      }
+    })
+  })
 }
 
 export const unreveal = (cell: MinesweeperCell): MinesweeperCell => {
