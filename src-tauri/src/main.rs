@@ -4,10 +4,12 @@
 )]
 
 pub mod Minesweeper;
+use combinations::Combinations;
 
 #[tauri::command]
 fn prover9_request(board: Minesweeper::Board, message: String) {
-  println!("Requested {} from {:#?}", message, board);
+  let statements = Minesweeper::get_statements(&board);
+  println!("{:#?}", statements);
 }
 
 fn main() {
