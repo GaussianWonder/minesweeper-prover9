@@ -1,5 +1,7 @@
 use std::fmt::Write;
 use std::fs;
+use std::process::{Command, Stdio};
+use std::io::prelude::*;
 use serde::{Serialize, Deserialize};
 use combinations::Combinations;
 
@@ -199,22 +201,36 @@ pub fn get_statements(board: &Board) -> Vec<String> {
 }
 
 pub fn make_input_file(statements: Vec<String>) {
-  let prepared_statements: String = statements.join(".\n"); // end statements and new line them
+  let prepared_statements: String = statements.join(".\n"); // end statements and new line them, keep in mind the last one does not have a .
   let mut file_contents: String = "".to_string();
   write!(file_contents, "
 assign(max_seconds, 30).
-set(binary_resolution).
-set(print_gen).
 
 formulas(assumptions).
-{}
+{}.
 end_of_list.
 
 formulas(goals).
-M.
 end_of_list.
     ",
     prepared_statements,
   );
   fs::write("minesweeper.in", &mut file_contents).expect("Unable to write file!");
+}
+
+pub fn execute_input_file() -> String {
+  // mace4 -c -m -1 -n 2 -f minesweeper.in > minesweeper.out
+  let output = Command::new("mace4")
+    .arg("-c")
+    .arg("-m")
+    .arg("-1")
+    .arg("-n")
+    .arg("2")
+    .arg("-f")
+    .arg("minesweeper.in")
+    .output()
+    .expect("mace4 is not accessible");
+  let mut stdout = String::from_utf8(output.stdout).unwrap();
+  fs::write("minesweeper.out", &mut stdout).expect("Unable to write file!");
+  stdout
 }

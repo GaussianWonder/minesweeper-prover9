@@ -1,0 +1,267 @@
+============================== Mace4 =================================
+Mace4 (64) version 2009-11A, November 2009.
+Process 25131 was started by virghi on virghi-pc,
+Mon Dec  6 03:56:18 2021
+The command was "mace4 -c -m -1 -n 2 -f minesweeper.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file minesweeper.in
+
+assign(max_seconds,30).
+
+formulas(assumptions).
+m02.
+m02 & m24.
+m24.
+m38.
+m65.
+m65 & m73 | m65 & m74 | m65 & m75 | m73 & m74 | m73 & m75 | m74 & m75.
+m65 & m75.
+m65 & m75 & m85 | m65 & m75 & m86 | m65 & m75 & m87 | m65 & m85 & m86 | m65 & m85 & m87 | m65 & m86 & m87 | m75 & m85 & m86 | m75 & m85 & m87 | m75 & m86 & m87 | m85 & m86 & m87.
+m72 | m73 | m74.
+m86 & m87 | m86 & m88 | m87 & m88.
+m87 | m88.
+m71 & m72 | m71 & m73 | m72 & m73.
+m70 & m71 | m70 & m72 | m71 & m72.
+m70 | m71.
+m65 & m73 -> -(m74 & m75 | m65 & m74 | m65 & m75 | m73 & m74 | m73 & m75).
+m65 & m74 -> -(m65 & m73 | m74 & m75 | m65 & m75 | m73 & m74 | m73 & m75).
+m65 & m75 -> -(m65 & m73 | m65 & m74 | m74 & m75 | m73 & m74 | m73 & m75).
+m73 & m74 -> -(m65 & m73 | m65 & m74 | m65 & m75 | m74 & m75 | m73 & m75).
+m73 & m75 -> -(m65 & m73 | m65 & m74 | m65 & m75 | m73 & m74 | m74 & m75).
+m74 & m75 -> -(m65 & m73 | m65 & m74 | m65 & m75 | m73 & m74 | m73 & m75).
+m65 & m75 & m85 -> -(m85 & m86 & m87 | m65 & m75 & m86 | m65 & m75 & m87 | m65 & m85 & m86 | m65 & m85 & m87 | m65 & m86 & m87 | m75 & m85 & m86 | m75 & m85 & m87 | m75 & m86 & m87).
+m65 & m75 & m86 -> -(m65 & m75 & m85 | m85 & m86 & m87 | m65 & m75 & m87 | m65 & m85 & m86 | m65 & m85 & m87 | m65 & m86 & m87 | m75 & m85 & m86 | m75 & m85 & m87 | m75 & m86 & m87).
+m65 & m75 & m87 -> -(m65 & m75 & m85 | m65 & m75 & m86 | m85 & m86 & m87 | m65 & m85 & m86 | m65 & m85 & m87 | m65 & m86 & m87 | m75 & m85 & m86 | m75 & m85 & m87 | m75 & m86 & m87).
+m65 & m85 & m86 -> -(m65 & m75 & m85 | m65 & m75 & m86 | m65 & m75 & m87 | m85 & m86 & m87 | m65 & m85 & m87 | m65 & m86 & m87 | m75 & m85 & m86 | m75 & m85 & m87 | m75 & m86 & m87).
+m65 & m85 & m87 -> -(m65 & m75 & m85 | m65 & m75 & m86 | m65 & m75 & m87 | m65 & m85 & m86 | m85 & m86 & m87 | m65 & m86 & m87 | m75 & m85 & m86 | m75 & m85 & m87 | m75 & m86 & m87).
+m65 & m86 & m87 -> -(m65 & m75 & m85 | m65 & m75 & m86 | m65 & m75 & m87 | m65 & m85 & m86 | m65 & m85 & m87 | m85 & m86 & m87 | m75 & m85 & m86 | m75 & m85 & m87 | m75 & m86 & m87).
+m75 & m85 & m86 -> -(m65 & m75 & m85 | m65 & m75 & m86 | m65 & m75 & m87 | m65 & m85 & m86 | m65 & m85 & m87 | m65 & m86 & m87 | m85 & m86 & m87 | m75 & m85 & m87 | m75 & m86 & m87).
+m75 & m85 & m87 -> -(m65 & m75 & m85 | m65 & m75 & m86 | m65 & m75 & m87 | m65 & m85 & m86 | m65 & m85 & m87 | m65 & m86 & m87 | m75 & m85 & m86 | m85 & m86 & m87 | m75 & m86 & m87).
+m75 & m86 & m87 -> -(m65 & m75 & m85 | m65 & m75 & m86 | m65 & m75 & m87 | m65 & m85 & m86 | m65 & m85 & m87 | m65 & m86 & m87 | m75 & m85 & m86 | m75 & m85 & m87 | m85 & m86 & m87).
+m85 & m86 & m87 -> -(m65 & m75 & m85 | m65 & m75 & m86 | m65 & m75 & m87 | m65 & m85 & m86 | m65 & m85 & m87 | m65 & m86 & m87 | m75 & m85 & m86 | m75 & m85 & m87 | m75 & m86 & m87).
+m72 -> -(m74 | m73).
+m73 -> -(m72 | m74).
+m74 -> -(m72 | m73).
+m86 & m87 -> -(m87 & m88 | m86 & m88).
+m86 & m88 -> -(m86 & m87 | m87 & m88).
+m87 & m88 -> -(m86 & m87 | m86 & m88).
+m87 -> -m88.
+m88 -> -m87.
+m71 & m72 -> -(m72 & m73 | m71 & m73).
+m71 & m73 -> -(m71 & m72 | m72 & m73).
+m72 & m73 -> -(m71 & m72 | m71 & m73).
+m70 & m71 -> -(m71 & m72 | m70 & m72).
+m70 & m72 -> -(m70 & m71 | m71 & m72).
+m71 & m72 -> -(m70 & m71 | m70 & m72).
+m70 -> -m71.
+m71 -> -m70.
+end_of_list.
+
+formulas(goals).
+end_of_list.
+
+% From the command line: assign(max_models, -1).
+    % assign(domain_size, 2) -> assign(start_size, 2).
+    % assign(domain_size, 2) -> assign(end_size, 2).
+
+% From the command line: assign(domain_size, 2).
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 m02 & m24 # label(non_clause).  [assumption].
+2 m65 & m73 | m65 & m74 | m65 & m75 | m73 & m74 | m73 & m75 | m74 & m75 # label(non_clause).  [assumption].
+3 m65 & m75 # label(non_clause).  [assumption].
+4 m65 & m75 & m85 | m65 & m75 & m86 | m65 & m75 & m87 | m65 & m85 & m86 | m65 & m85 & m87 | m65 & m86 & m87 | m75 & m85 & m86 | m75 & m85 & m87 | m75 & m86 & m87 | m85 & m86 & m87 # label(non_clause).  [assumption].
+5 m86 & m87 | m86 & m88 | m87 & m88 # label(non_clause).  [assumption].
+6 m71 & m72 | m71 & m73 | m72 & m73 # label(non_clause).  [assumption].
+7 m70 & m71 | m70 & m72 | m71 & m72 # label(non_clause).  [assumption].
+8 m65 & m73 -> -(m74 & m75 | m65 & m74 | m65 & m75 | m73 & m74 | m73 & m75) # label(non_clause).  [assumption].
+9 m65 & m74 -> -(m65 & m73 | m74 & m75 | m65 & m75 | m73 & m74 | m73 & m75) # label(non_clause).  [assumption].
+10 m65 & m75 -> -(m65 & m73 | m65 & m74 | m74 & m75 | m73 & m74 | m73 & m75) # label(non_clause).  [assumption].
+11 m73 & m74 -> -(m65 & m73 | m65 & m74 | m65 & m75 | m74 & m75 | m73 & m75) # label(non_clause).  [assumption].
+12 m73 & m75 -> -(m65 & m73 | m65 & m74 | m65 & m75 | m73 & m74 | m74 & m75) # label(non_clause).  [assumption].
+13 m74 & m75 -> -(m65 & m73 | m65 & m74 | m65 & m75 | m73 & m74 | m73 & m75) # label(non_clause).  [assumption].
+14 m65 & m75 & m85 -> -(m85 & m86 & m87 | m65 & m75 & m86 | m65 & m75 & m87 | m65 & m85 & m86 | m65 & m85 & m87 | m65 & m86 & m87 | m75 & m85 & m86 | m75 & m85 & m87 | m75 & m86 & m87) # label(non_clause).  [assumption].
+15 m65 & m75 & m86 -> -(m65 & m75 & m85 | m85 & m86 & m87 | m65 & m75 & m87 | m65 & m85 & m86 | m65 & m85 & m87 | m65 & m86 & m87 | m75 & m85 & m86 | m75 & m85 & m87 | m75 & m86 & m87) # label(non_clause).  [assumption].
+16 m65 & m75 & m87 -> -(m65 & m75 & m85 | m65 & m75 & m86 | m85 & m86 & m87 | m65 & m85 & m86 | m65 & m85 & m87 | m65 & m86 & m87 | m75 & m85 & m86 | m75 & m85 & m87 | m75 & m86 & m87) # label(non_clause).  [assumption].
+17 m65 & m85 & m86 -> -(m65 & m75 & m85 | m65 & m75 & m86 | m65 & m75 & m87 | m85 & m86 & m87 | m65 & m85 & m87 | m65 & m86 & m87 | m75 & m85 & m86 | m75 & m85 & m87 | m75 & m86 & m87) # label(non_clause).  [assumption].
+18 m65 & m85 & m87 -> -(m65 & m75 & m85 | m65 & m75 & m86 | m65 & m75 & m87 | m65 & m85 & m86 | m85 & m86 & m87 | m65 & m86 & m87 | m75 & m85 & m86 | m75 & m85 & m87 | m75 & m86 & m87) # label(non_clause).  [assumption].
+19 m65 & m86 & m87 -> -(m65 & m75 & m85 | m65 & m75 & m86 | m65 & m75 & m87 | m65 & m85 & m86 | m65 & m85 & m87 | m85 & m86 & m87 | m75 & m85 & m86 | m75 & m85 & m87 | m75 & m86 & m87) # label(non_clause).  [assumption].
+20 m75 & m85 & m86 -> -(m65 & m75 & m85 | m65 & m75 & m86 | m65 & m75 & m87 | m65 & m85 & m86 | m65 & m85 & m87 | m65 & m86 & m87 | m85 & m86 & m87 | m75 & m85 & m87 | m75 & m86 & m87) # label(non_clause).  [assumption].
+21 m75 & m85 & m87 -> -(m65 & m75 & m85 | m65 & m75 & m86 | m65 & m75 & m87 | m65 & m85 & m86 | m65 & m85 & m87 | m65 & m86 & m87 | m75 & m85 & m86 | m85 & m86 & m87 | m75 & m86 & m87) # label(non_clause).  [assumption].
+22 m75 & m86 & m87 -> -(m65 & m75 & m85 | m65 & m75 & m86 | m65 & m75 & m87 | m65 & m85 & m86 | m65 & m85 & m87 | m65 & m86 & m87 | m75 & m85 & m86 | m75 & m85 & m87 | m85 & m86 & m87) # label(non_clause).  [assumption].
+23 m85 & m86 & m87 -> -(m65 & m75 & m85 | m65 & m75 & m86 | m65 & m75 & m87 | m65 & m85 & m86 | m65 & m85 & m87 | m65 & m86 & m87 | m75 & m85 & m86 | m75 & m85 & m87 | m75 & m86 & m87) # label(non_clause).  [assumption].
+24 m72 -> -(m74 | m73) # label(non_clause).  [assumption].
+25 m73 -> -(m72 | m74) # label(non_clause).  [assumption].
+26 m74 -> -(m72 | m73) # label(non_clause).  [assumption].
+27 m86 & m87 -> -(m87 & m88 | m86 & m88) # label(non_clause).  [assumption].
+28 m86 & m88 -> -(m86 & m87 | m87 & m88) # label(non_clause).  [assumption].
+29 m87 & m88 -> -(m86 & m87 | m86 & m88) # label(non_clause).  [assumption].
+30 m87 -> -m88 # label(non_clause).  [assumption].
+31 m88 -> -m87 # label(non_clause).  [assumption].
+32 m71 & m72 -> -(m72 & m73 | m71 & m73) # label(non_clause).  [assumption].
+33 m71 & m73 -> -(m71 & m72 | m72 & m73) # label(non_clause).  [assumption].
+34 m72 & m73 -> -(m71 & m72 | m71 & m73) # label(non_clause).  [assumption].
+35 m70 & m71 -> -(m71 & m72 | m70 & m72) # label(non_clause).  [assumption].
+36 m70 & m72 -> -(m70 & m71 | m71 & m72) # label(non_clause).  [assumption].
+37 m71 & m72 -> -(m70 & m71 | m70 & m72) # label(non_clause).  [assumption].
+38 m70 -> -m71 # label(non_clause).  [assumption].
+39 m71 -> -m70 # label(non_clause).  [assumption].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+m02.
+m02.
+m24.
+m24.
+m38.
+m65.
+m65 | m73 | m74.
+m65 | m73 | m75.
+m65 | m74 | m75.
+m73 | m74 | m75.
+m65.
+m75.
+m65 | m75 | m85.
+m65 | m86 | m75.
+m65 | m86 | m85.
+m65 | m86 | m87.
+m65 | m87 | m75.
+m65 | m87 | m85.
+m75 | m85 | m86.
+m75 | m85 | m87.
+m75 | m86 | m87.
+m85 | m86 | m87.
+m72 | m73 | m74.
+m86 | m87.
+m86 | m88.
+m87 | m88.
+m87 | m88.
+m71 | m72.
+m71 | m73.
+m72 | m73.
+m70 | m71.
+m70 | m72.
+m71 | m72.
+m70 | m71.
+-m65 | -m73 | -m74.
+-m65 | -m73 | -m75.
+-m65 | -m74 | -m73.
+-m65 | -m74 | -m75.
+-m65 | -m75 | -m73.
+-m65 | -m75 | -m74.
+-m73 | -m74 | -m65.
+-m73 | -m74 | -m75.
+-m73 | -m75 | -m65.
+-m73 | -m75 | -m74.
+-m74 | -m75 | -m65.
+-m74 | -m75 | -m73.
+-m65 | -m75 | -m85 | -m86.
+-m65 | -m75 | -m85 | -m87.
+-m65 | -m75 | -m86 | -m85.
+-m65 | -m75 | -m86 | -m87.
+-m65 | -m75 | -m87 | -m85.
+-m65 | -m75 | -m87 | -m86.
+-m65 | -m85 | -m86 | -m75.
+-m65 | -m85 | -m86 | -m87.
+-m65 | -m85 | -m87 | -m75.
+-m65 | -m85 | -m87 | -m86.
+-m65 | -m86 | -m87 | -m75.
+-m65 | -m86 | -m87 | -m85.
+-m75 | -m85 | -m86 | -m65.
+-m75 | -m85 | -m86 | -m87.
+-m75 | -m85 | -m87 | -m65.
+-m75 | -m85 | -m87 | -m86.
+-m75 | -m86 | -m87 | -m65.
+-m75 | -m86 | -m87 | -m85.
+-m85 | -m86 | -m87 | -m65.
+-m85 | -m86 | -m87 | -m75.
+-m72 | -m74.
+-m72 | -m73.
+-m73 | -m72.
+-m73 | -m74.
+-m74 | -m72.
+-m74 | -m73.
+-m86 | -m87 | -m88.
+-m86 | -m88 | -m87.
+-m87 | -m88 | -m86.
+-m87 | -m88.
+-m88 | -m87.
+-m71 | -m72 | -m73.
+-m71 | -m73 | -m72.
+-m72 | -m73 | -m71.
+-m70 | -m71 | -m72.
+-m70 | -m72 | -m71.
+-m71 | -m72 | -m70.
+-m70 | -m71.
+-m71 | -m70.
+end_of_list.
+
+============================== end of clauses for search =============
+
+% There are no natural numbers in the input.
+
+============================== DOMAIN SIZE 2 =========================
+
+============================== MODEL =================================
+
+interpretation( 2, [number=1, seconds=0], [
+
+        relation(m02, [ 1 ]),
+
+        relation(m24, [ 1 ]),
+
+        relation(m38, [ 1 ]),
+
+        relation(m65, [ 1 ]),
+
+        relation(m70, [ 0 ]),
+
+        relation(m71, [ 1 ]),
+
+        relation(m72, [ 1 ]),
+
+        relation(m73, [ 0 ]),
+
+        relation(m74, [ 0 ]),
+
+        relation(m75, [ 1 ]),
+
+        relation(m85, [ 0 ]),
+
+        relation(m86, [ 1 ]),
+
+        relation(m87, [ 0 ]),
+
+        relation(m88, [ 1 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 2.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.00 seconds).
+Ground clauses: seen=85, kept=48.
+Selections=2, assignments=4, propagations=17, current_models=1.
+Rewrite_terms=0, rewrite_bools=110, indexes=0.
+Rules_from_neg_clauses=0, cross_offs=0.
+
+============================== end of statistics =====================
+
+User_CPU=0.00, System_CPU=0.00, Wall_clock=0.
+
+Exiting with 1 model.
+
+Process 25131 exit (all_models) Mon Dec  6 03:56:18 2021
+The process finished Mon Dec  6 03:56:18 2021

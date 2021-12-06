@@ -10,6 +10,8 @@ use combinations::Combinations;
 fn prover9_request(board: Minesweeper::Board, message: String) {
   let statements = Minesweeper::get_statements(&board);
   println!("{:#?}", statements);
+  Minesweeper::make_input_file(statements);
+  Minesweeper::execute_input_file();
 }
 
 fn main() {
