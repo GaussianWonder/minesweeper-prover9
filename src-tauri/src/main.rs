@@ -11,7 +11,8 @@ fn prover9_request(board: Minesweeper::Board, message: String) {
   let statements = Minesweeper::get_statements(&board);
   println!("{:#?}", statements);
   Minesweeper::make_input_file(statements);
-  Minesweeper::execute_input_file();
+  let output: String = Minesweeper::execute_input_file();
+  let stateful_cells: Vec<Minesweeper::Mace4Model> = Minesweeper::parse_mace4_output(output, board);
 }
 
 fn main() {

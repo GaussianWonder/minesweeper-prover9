@@ -2,6 +2,7 @@ use std::fmt::Write;
 use std::fs;
 use std::process::{Command, Stdio};
 use std::io::prelude::*;
+use regex::Regex;
 use serde::{Serialize, Deserialize};
 use combinations::Combinations;
 
@@ -22,12 +23,13 @@ pub struct Board {
   cells: Vec<Vec<Cell>>
 }
 
-type IndexPair = (i32, i32);
-type IndexVector = Vec<IndexPair>;
+pub type IndexPair = (i32, i32);
+pub type IndexVector = Vec<IndexPair>;
 type Matrix<T> = Vec<Vec<T>>;
 type StatementSource = Vec<Vec<IndexPair>>;
 type Statement = String;
 type Statements = Vec<String>;
+pub type Mace4Model = Vec<(IndexPair, Cell)>;
 
 // directions for all possible neighbors
 const RELATIVE_NEIGHBORS: [IndexPair; 8] = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)];
@@ -234,3 +236,53 @@ pub fn execute_input_file() -> String {
   fs::write("minesweeper.out", &mut stdout).expect("Unable to write file!");
   stdout
 }
+
+// Regex to find model bodies 
+// interpretation\( \d+, \[number=(\d+), seconds=\d+], \[((?:\s+relation\(m\d+, \[ \d+ \]\),?)+)\s+\]\)\.
+// group1 -> index
+// group2 -> relation array
+
+// Regex to identify relation
+// ((?:relation\(m(\d+), \[ (\d+) \]\),?)+)
+// group1 -> matrix index
+// group2 -> isBomb value
+pub fn parse_mace4_output(output: String, board: Board) -> Vec<Mace4Model> {
+  let mut parsed_interpretations: Vec<Mace4Model> = vec![];
+
+  let i_re = regex::Regex::new(r"interpretation\( \d+, \[number=(\d+), seconds=\d+], \[((?:\s+relation\(m\d+, \[ \d+ \]\),?)+)\s+\]\)\.").unwrap();
+  for interpretation in i_re.find_iter(&output) {
+    let mut parsed_result: Mace4Model = vec![];
+    // println!("{:?}: {}", interpretation, interpretation.as_str());
+    let r_re = regex::Regex::new(r"((?:relation\(m(\d+), \[ (\d+) \]\),?)+)").unwrap();
+    for relation in r_re.find_iter(interpretation.as_str()) {
+      let caps = r_re.captures(relation.as_str()).unwrap();
+      let encoded_index = caps.get(2).map_or("", |m| m.as_str());
+      let encoded_bool = caps.get(3).map_or("", |m| m.as_str());
+
+      let is_bomb: bool = match encoded_bool {
+        "1" => true,
+        _ => false,
+      };
+
+      let index_i: i32 = encoded_index.chars().nth(0).unwrap().to_digit(10).unwrap() as i32;
+      let index_j: i32 = encoded_index.chars().nth(1).unwrap().to_digit(10).unwrap() as i32;
+
+      parsed_result.push((
+        (index_i, index_j) as IndexPair,
+        Cell {
+          isBomb: is_bomb,
+          isRevealed: false,
+          isFlagged: false,
+          isUnknown: false,
+          adjacentBombs: board.cells[index_i as usize][index_j as usize].adjacentBombs,
+          isHint: false,
+        },
+      ));
+    }
+
+    parsed_interpretations.push(parsed_result);
+  }
+
+  parsed_interpretations
+}
+
